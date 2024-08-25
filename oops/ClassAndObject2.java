@@ -29,7 +29,6 @@ class Student {
         this.name = s2.name;
         this.age = s2.age;
     }
-
 }
 
 public class ClassAndObject2 {

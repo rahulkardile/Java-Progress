@@ -1,0 +1,13 @@
+All The conceps that i have learned in oop in java
+
+01. Class
+02. Object 
+03. This
+04. new
+05. Constuctores and it's types
+06. Constructore Over Loading 
+07. Polymorphisam 
+08. Compile time Polymorphisam and run time Polymorphisam
+09. Function Overloading
+10. Inheritance 27:00
+11. 

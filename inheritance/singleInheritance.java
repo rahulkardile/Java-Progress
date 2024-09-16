@@ -1,5 +1,7 @@
 package inheritance;
 
+import bank;
+
 class Shape {
     public void area(){
         System.out.println("Display Area");
@@ -29,6 +31,7 @@ class Circle extends Shape {
 
 public class singleInheritance {
         public static void main(String[] args) {
-            
+            bank.Account ac1 = new bank.Account();
+            ac.name = "customer 1";
         }
 }

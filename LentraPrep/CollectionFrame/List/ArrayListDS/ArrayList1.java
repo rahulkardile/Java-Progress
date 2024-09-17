@@ -1,4 +1,4 @@
-package CollectionFrame.List;
+package CollectionFrame.List.ArrayListDS;
 
 import java.util.ArrayList;
 import java.util.Iterator;

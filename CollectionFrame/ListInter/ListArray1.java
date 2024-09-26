@@ -5,7 +5,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-public class List1 {
+public class ListArray1 {
     public static void main(String[] args) {
         List<String> fruits = new ArrayList<String>();
         fruits.add("Apple");

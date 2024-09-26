@@ -1,11 +1,14 @@
-package CollectionFrame.Map.HashMap;
+package CollectionFrame.Map.TreeMap;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
-public class HashMap1 {
-    public static void main(String[] args) {
-        Map<String, Integer> numbers = new HashMap<>();
+
+public class TreeMap1 {
+
+public static void main(String[] args) {
+    
+        Map<String, Integer> numbers = new TreeMap<>();
 
         numbers.put("One", 1);
         numbers.put("Two", 2);
@@ -20,6 +23,9 @@ public class HashMap1 {
         numbers.putIfAbsent("Two", 23);
 
         System.out.println(numbers);
+
+        //for removing 
+        // numbers.remove("Two");
 
         // it will return key and value
         // for (Map.Entry<String, Integer> e : numbers.entrySet()) {

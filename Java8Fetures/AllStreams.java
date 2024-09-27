@@ -3,8 +3,9 @@ package Java8Fetures;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-public class Filter1 {
+public class AllStreams {
     public static void main(String[] args) {
         List<Integer> list = Arrays.asList(1, 3, 32, 2, 42, 52, 323, 43, 223, 33, 22, 312454, 6, 546, 47, 67, 6, 7657);
 
@@ -25,10 +26,18 @@ public class Filter1 {
                 // .sorted((a, b) -> (b - a)) // sort's in desending order
                 .sorted() // sorts in asending order
                 .limit(3) // it limit elements
-                .skip(2) // skips element 
+                .skip(2) // skips element
                 .collect(Collectors.toList());
 
         System.out.println(advanceList);
+
+        System.out.println(Stream.iterate(0, x -> x + 1).limit(101).skip(1).filter(x -> x % 2 == 0).map(x -> x * 2)
+                .distinct().peek(x -> {
+                    if (x == 40) {
+                        System.out.println(x);
+                    }
+                })
+                .collect(Collectors.toList()));
 
     }
 }

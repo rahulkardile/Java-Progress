@@ -18,7 +18,6 @@ public class Main {
 
     }
 
-
     public void createDB(){
         connectDB();
         String query = "CREATE DATABASE Planets";

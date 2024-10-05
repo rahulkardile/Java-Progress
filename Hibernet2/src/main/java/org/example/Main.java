@@ -5,19 +5,26 @@ import org.hibernate.cfg.Configuration;
 
 public class Main {
 
-    public static void Create(Configuration con, EMP emp){
+    public static void Create(Configuration con, EMP emp) {
+        // Create a session factory to manage sessions with the database
         SessionFactory sf = con.buildSessionFactory();
 
+        // Open a session to interact with the database
         Session session = sf.openSession();
 
+        // Start a new transaction
         session.beginTransaction();
+
         session.save(emp);
 
+        // Commit the transaction to finalize the changes
         session.getTransaction().commit();
+
         session.close();
 
-        System.out.println("Data inseted");
+        System.out.println("Data inserted");
     }
+
 
     public static  void getById(Configuration con, String id){
         EMP emp = null;
@@ -43,6 +50,8 @@ public class Main {
         ){
 
             Transaction transaction = session.beginTransaction();
+
+            // Retrieve the employee from the database
             session.update(emp);
             transaction.commit();
 

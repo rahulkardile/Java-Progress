@@ -69,13 +69,14 @@ public class Main {
 
     public static void main(String[] args) {
 
-        EMP emp = new EMP("10","Kaka langhe", 21000);
+        EMP emp = new EMP("9","Krishna Langhe", 21000);
 
         try{
 
             Configuration con = new Configuration().configure("hibernate.cfg.xml");
 //            Create(con, emp);
 //            getById(con, "1");
+            update(con, emp);
 
 
         }catch(Exception e){

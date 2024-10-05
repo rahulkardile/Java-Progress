@@ -11,13 +11,14 @@ public class Main {
 //            EMP.CreateDB(con);
 //            EMP.CreateTable(con);
 //
-            EMP.InsertData(con, 2, "Rugved Bhavasar", 300000000);
-            EMP.InsertData(con, 2, "Rahul Sonawane", 300000000);
-            EMP.InsertData(con, 3, "Bhakti Purnale", 300000000);
-            EMP.InsertData(con, 4, "Shantanu Niphal", 300000000);
-            EMP.InsertData(con, 5, "Suraj Mate", 300000000);
-            EMP.InsertData(con, 6, "Shubh Sawai", 300000000);
-EMP.ReadData(con);
+//            EMP.InsertData(con, 2, "Rugved Bhavasar", 300000000);
+//            EMP.InsertData(con, 7, "Rahul Sonawane", 300000000);
+//            EMP.InsertData(con, 3, "Bhakti Purnale", 300000000);
+//            EMP.InsertData(con, 4, "Shantanu Niphal", 300000000);
+//            EMP.InsertData(con, 5, "Suraj Mate", 300000000);
+//            EMP.InsertData(con, 6, "Shubh Sawai", 300000000);
+
+            EMP.ReadData(con);
         }catch (Exception e){
             e.printStackTrace();
         }

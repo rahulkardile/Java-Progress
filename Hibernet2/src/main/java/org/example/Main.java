@@ -67,6 +67,26 @@ public class Main {
 
     }
 
+    public  static void delete(Configuration con, String id){
+        try(SessionFactory sf = con.buildSessionFactory();
+            Session session = sf.openSession();){
+            Transaction transaction = session.beginTransaction();
+
+            EMP emp = session.get(EMP.class, id);
+            if(emp != null){
+                session.delete(emp);
+                transaction.commit();
+                System.out.println("Deleted info : " + emp.getName());
+                System.out.println("Deleted successfully");
+            }else {
+                System.out.println("User found!");
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
     public static void main(String[] args) {
 
         EMP emp = new EMP("9","Krishna Langhe", 21000);
@@ -76,8 +96,9 @@ public class Main {
             Configuration con = new Configuration().configure("hibernate.cfg.xml");
 //            Create(con, emp);
 //            getById(con, "1");
-            update(con, emp);
+//            update(con, emp);
 
+            delete(con, "9");
 
         }catch(Exception e){
             e.printStackTrace();

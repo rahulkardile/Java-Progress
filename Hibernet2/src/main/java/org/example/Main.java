@@ -86,12 +86,25 @@ public class Main {
 
         try{
 
-            Configuration con = new Configuration().configure("hibernate.cfg.xml");
+            Configuration con = (Configuration) new Configuration()
+                    .configure("hibernate.cfg.xml")
+                    .addAnnotatedClass(EMP.class);
+
+//            SessionFactory sf = con.buildSessionFactory();
+
+//            Session session =  sf.openSession();
+//
+//            session.beginTransaction();
+//
+//            session.save(emp);
+//
+//            session.getTransaction().commit();
+
 //            Create(con, emp);
-//            getById(con, "1");
+            getById(con, "9");
 //            update(con, emp);
 
-            delete(con, "9");
+//            delete(con, "9");
 
         }catch(Exception e){
             e.printStackTrace();

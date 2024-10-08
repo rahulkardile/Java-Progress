@@ -8,10 +8,10 @@ public class Base {
         // World world = new World();
         // world.start();
 
-        World world = new World();
+        World world = new World();  // NEW
         Thread t1 = new Thread(world);
 
-        t1.start();
+        t1.start();  // RUNNABLE
 
         // it will return the name of current thread name.
         for (;;) {

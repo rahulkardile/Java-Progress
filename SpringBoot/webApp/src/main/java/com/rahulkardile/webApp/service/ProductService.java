@@ -13,10 +13,16 @@ public class ProductService {
             new Product(101, "Iphone 6s", 50000),
             new Product(102, "Lenovo Think Pad 6", 65000),
             new Product(103, "Redmi Note 7 Pro", 61000)
-            );
+    );
 
-    public List<Product> getProduct(){
+    public List<Product> getProduct() {
         return product;
     }
 
+    public Product getProductById(int id){
+        return product.stream()
+                .filter(p -> p.getProId() == id)
+                .findFirst().orElse(new Product(100, "Product Not Found!", 0));
     }
+
+}

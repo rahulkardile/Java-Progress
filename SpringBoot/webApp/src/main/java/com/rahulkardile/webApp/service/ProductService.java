@@ -30,4 +30,29 @@ public class ProductService {
         this.product.add(product);
     }
 
+    public void updateProduct(Product product){
+
+        int index = 0;
+
+        for(int i = 0; i < this.product.size(); i++){
+            if(this.product.get(i).getProId() == product.getProId()){
+                index = i;
+                this.product.set(index, product);
+                break;
+            }
+        }
+    }
+
+    public void deleteProduct(int id) {
+        int index = 0;
+
+        for(int i = 0; i < this.product.size(); i++){
+            if(this.product.get(i).getProId() == id){
+                index = i;
+                product.remove(index);
+                break;
+            }
+        }
+
+    }
 }

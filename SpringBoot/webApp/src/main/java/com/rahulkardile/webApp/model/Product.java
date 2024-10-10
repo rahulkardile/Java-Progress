@@ -1,12 +1,16 @@
 package com.rahulkardile.webApp.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.stereotype.Component;
 
 @Component
+@Entity
 public class Product {
 
+    @Id
     public int proId;
     public String proName;
     public int price;

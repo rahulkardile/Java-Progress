@@ -31,6 +31,12 @@ public class ProductController {
         return "Product Added";
     }
 
+    @PostMapping("/addManyProducts")
+    public String addMultipleProduct(){
+      int totalProductAdded = service.addMultipleProduct();
+        return "Added " + totalProductAdded;
+    }
+
     @PutMapping("/product")
     public void updateProduct(@RequestBody Product product){
         service.updateProduct(product);

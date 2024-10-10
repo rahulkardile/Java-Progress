@@ -11,7 +11,6 @@ public class App
 
         Dev dev = (Dev) context.getBean("dev");
         dev.build();
-        System.out.println(dev.getAge());
 
     }
 }

@@ -4,19 +4,12 @@
        xsi:schemaLocation="
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+    <bean id="com" class="org.Learn.Laptop" primary="true"/>
+    <bean id="desktop" class="org.Learn.Desktop"/>
+
     <!-- bean definitions here -->
-    <bean id="dev" class="org.Learn.Dev">
-
-        <!--  used to assign value to propertys.-->
-        <!--  <property name="age" value="12" />-->
-
-        <constructor-arg ref="lap1" />
-
-        <!-- used to pass values to constructors !-->
-<!--        <constructor-arg index="0" value="12" />-->
-<!--        <property name="laptop" ref="lap1" />-->
-
+    <bean id="dev" class="org.Learn.Dev" autowire="byType">
+    <!-- <property name="com" ref="laptop"/>-->
     </bean>
-    <bean id="lap1" class="org.Learn.Laptop"></bean>
 
 </beans>

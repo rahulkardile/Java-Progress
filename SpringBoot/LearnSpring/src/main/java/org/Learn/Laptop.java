@@ -1,6 +1,6 @@
 package org.Learn;
 
-public class Laptop {
+public class Laptop implements Computer{
 
    public Laptop(){
         System.out.println("Laptop Constructore . . . ");
@@ -9,4 +9,5 @@ public class Laptop {
     public void compile(){
         System.out.println("Compiling");
     }
+
 }

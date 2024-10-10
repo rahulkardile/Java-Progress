@@ -1,12 +1,13 @@
 package org.Learn;
 
-public class Laptop {
+public class Desktop implements Computer {
 
-   public Laptop(){
+   public Desktop(){
         System.out.println("Laptop Constructore . . . ");
     }
 
     public void compile(){
-        System.out.println("Compiling");
+        System.out.println("Compiling in desktop.");
     }
+
 }

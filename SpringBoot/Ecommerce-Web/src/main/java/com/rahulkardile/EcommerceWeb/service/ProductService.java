@@ -19,10 +19,12 @@ public class ProductService {
     private ProductRepo repo;
 
     public List<Product> GetAllProducts() {
-      return repo.findAll();
-    };
+        return repo.findAll();
+    }
 
-    public void InsertMultipleProducts(){
+    ;
+
+    public void InsertMultipleProducts() {
 
         String[] productNames = {
                 "Smartphone X", "Laptop Pro", "Wireless Earbuds", "4K TV", "Gaming Console",
@@ -72,7 +74,7 @@ public class ProductService {
 
         Random random = new Random();
 
-        for(int i = 0; i< 500; i++){
+        for (int i = 0; i < 500; i++) {
             int r = random.nextInt(30);
             repo.save(new Product(i, productNames[r], descriptions[r], brands[r], categories[r], new Timestamp(System.currentTimeMillis()), random.nextBoolean(), random.nextInt(400), random.nextInt(2100000)));
         }
@@ -88,6 +90,22 @@ public class ProductService {
         product.setImageType(imageFile.getContentType());
         product.setImageData(imageFile.getBytes());
         return repo.save(product);
+    }
+
+    public Product updateProduct(int id, Product product, MultipartFile imageFile) {
+        product.setImageName(imageFile.getOriginalFilename());
+        try {
+            product.setImageData(imageFile.getBytes());
+        }
+        catch (Exception e){
+            e.getMessage();
+        }
+        product.setImageType(imageFile.getContentType());
+        return repo.save(product);
+    }
+
+    public void DeleteProduct(int id) {
+        repo.deleteById(id);
     }
 
 }

@@ -20,7 +20,7 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
-    private String desc;
+    private String description;
     private String brand;
     private String category;
 
@@ -54,12 +54,12 @@ public class Product {
         this.name = name;
     }
 
-    public String getDesc() {
-        return desc;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+    public void setDescription(String desc) {
+        this.description = desc;
     }
 
     public String getBrand() {
@@ -134,10 +134,10 @@ public class Product {
         this.imageData = imageData;
     }
 
-    public Product(int id, String name, String desc, String brand, String category, Timestamp releaseDate, boolean available, int price, int quentity) {
+    public Product(int id, String name, String description, String brand, String category, Timestamp releaseDate, boolean available, int price, int quentity) {
         this.name = name;
         this.id = id;
-        this.desc = desc;
+        this.description = description;
         this.brand = brand;
         this.category = category;
         this.release_date = releaseDate;
@@ -146,5 +146,4 @@ public class Product {
         this.quantity = quentity;
 
     }
-
 }

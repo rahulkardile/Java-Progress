@@ -73,4 +73,23 @@ public class ProductController {
 
     }
 
+    @PutMapping("/product/{id}")
+    public ResponseEntity<String> updateProduct(@PathVariable int id, @RequestPart Product product, @RequestPart MultipartFile imageFile){
+        Product product1 = service.updateProduct(id, product, imageFile);
+        if(product1 != null){
+            return new ResponseEntity<>("Product is updated . . . ", HttpStatus.OK);
+        }else return new ResponseEntity<>("Failed to update", HttpStatus.BAD_REQUEST);
+    }
+
+    @DeleteMapping("/product/{id}")
+    public ResponseEntity<?> deleteProduct(@PathVariable int id){
+        Product pro = service.getProductById(id);
+        if(pro != null){
+            service.DeleteProduct(id);
+            return new ResponseEntity("Product is deleted!", HttpStatus.NO_CONTENT);
+        }else {
+            return new ResponseEntity<>("product not found", HttpStatus.OK);
+        }
+    };
+
 }

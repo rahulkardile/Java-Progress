@@ -1,0 +1,5 @@
+1. Set Priority
+2. Thread Interrupte
+3. yield
+4. setDeamon
+5. 

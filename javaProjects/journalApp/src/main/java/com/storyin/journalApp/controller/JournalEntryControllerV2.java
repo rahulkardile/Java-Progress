@@ -37,8 +37,16 @@ public class JournalEntryControllerV2 {
     }
 
     @PutMapping("/update/{id}")
-    public JournalEntry findByIdAndUpdate(@PathVariable Long id, @RequestBody JournalEntry entry){
-        return null;
+    public JournalEntry findByIdAndUpdate(@PathVariable ObjectId id, @RequestBody JournalEntry newEntry){
+      JournalEntry old = journalEntryService.getById(id).orElse(null);
+
+      if(old != null){
+          old.setTitle(newEntry.getTitle() != null && !newEntry.getTitle().equals("") ? newEntry.getTitle() : old.getTitle());
+          old.setContent(newEntry.getContent() != null && !newEntry.getContent().equals("") ? newEntry.getContent() : old.getContent());
+      }
+
+      journalEntryService.saveEntry(old);
+      return old;
     }
 
     @DeleteMapping("/id/{id}")

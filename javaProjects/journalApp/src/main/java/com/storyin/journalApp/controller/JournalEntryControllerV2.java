@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.ErrorResponse;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
@@ -22,8 +23,17 @@ public class JournalEntryControllerV2 {
     JournalEntryService journalEntryService;
 
     @GetMapping("/all")
-    public List<JournalEntry> getAll(){
-        return journalEntryService.getAll();
+    public ResponseEntity<?> getAll(){
+
+        List<JournalEntry> entries = journalEntryService.getAll();
+
+       ErrorHandler errorHandler = new ErrorHandler("Content Not Found!", 204);
+
+        if(entries.isEmpty()){
+            return new ResponseEntity<>(errorHandler, HttpStatus.NO_CONTENT);
+        }
+
+        return new ResponseEntity<>(entries, HttpStatus.OK);
     }
 
     @GetMapping("/id/{id}")
@@ -60,7 +70,7 @@ public class JournalEntryControllerV2 {
     }
 
     @PutMapping("/update/{id}")
-    public JournalEntry findByIdAndUpdate(@PathVariable ObjectId id, @RequestBody JournalEntry newEntry){
+    public ResponseEntity<JournalEntry> findByIdAndUpdate(@PathVariable ObjectId id, @RequestBody JournalEntry newEntry){
       JournalEntry old = journalEntryService.getById(id).orElse(null);
 
       if(old != null){
@@ -69,13 +79,13 @@ public class JournalEntryControllerV2 {
       }
 
       journalEntryService.saveEntry(old);
-      return old;
+      return new ResponseEntity<>(old, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/id/{id}")
-    public boolean findByIdAndDelete(@PathVariable ObjectId id){
-    journalEntryService.deleteById(id);
-    return true;
+        public ResponseEntity<?> findByIdAndDelete(@PathVariable ObjectId id){
+        journalEntryService.deleteById(id);
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
 }

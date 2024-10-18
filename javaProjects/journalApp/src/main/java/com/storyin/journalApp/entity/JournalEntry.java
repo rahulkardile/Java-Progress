@@ -1,5 +1,6 @@
 package com.storyin.journalApp.entity;
 
+import jakarta.validation.constraints.NotBlank;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -12,8 +13,13 @@ public class JournalEntry {
 
     @Id
     private ObjectId id;
+
+    @NotBlank(message = "please provide title!")
     private String title;
+
+    @NotBlank(message = "please provide content!")
     private String content;
+
     private LocalDateTime date;
 
     public ObjectId getId() {

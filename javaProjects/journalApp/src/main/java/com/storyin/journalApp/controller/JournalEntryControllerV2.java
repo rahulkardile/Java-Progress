@@ -2,15 +2,17 @@ package com.storyin.journalApp.controller;
 
 import com.storyin.journalApp.entity.JournalEntry;
 import com.storyin.journalApp.service.JournalEntryService;
+import com.storyin.journalApp.utils.ErrorHandler;
+import jakarta.validation.Valid;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 @RequestMapping("/journal")
@@ -25,15 +27,36 @@ public class JournalEntryControllerV2 {
     }
 
     @GetMapping("/id/{id}")
-    public JournalEntry findByIdAndReturn(@PathVariable ObjectId id){
-        return journalEntryService.getById(id).orElse(null);
+    public ResponseEntity<JournalEntry> findByIdAndReturn(@PathVariable ObjectId id){
+
+        Optional<JournalEntry> entry = journalEntryService.getById(id);
+        if(entry.isPresent()){
+            return new ResponseEntity<>(entry.get(), HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @PostMapping("/create")
-    public JournalEntry create(@RequestBody JournalEntry entry){
-        entry.setDate(LocalDateTime.now());
-        journalEntryService.saveEntry(entry);
-        return entry;
+    public ResponseEntity<Object> create(@Valid @RequestBody JournalEntry entry, BindingResult bindingResult){
+
+        if (bindingResult.hasErrors()){
+            String errorMessage = bindingResult.getFieldError().getDefaultMessage();
+            ErrorHandler errorHandler = new ErrorHandler(errorMessage, HttpStatus.BAD_REQUEST.value());
+            return new ResponseEntity<>(errorHandler, HttpStatus.BAD_REQUEST);
+        }
+
+        try{
+
+            entry.setDate(LocalDateTime.now());
+            journalEntryService.saveEntry(entry);
+            return new ResponseEntity<>(entry, HttpStatus.CREATED);
+
+        }catch (Exception e){
+
+            ErrorHandler errorHandler = new ErrorHandler( !e.getMessage().isEmpty() ? e.getMessage() : "Internal Server error!", 500);
+            return new ResponseEntity<>(errorHandler, HttpStatus.INTERNAL_SERVER_ERROR);
+
+        }
     }
 
     @PutMapping("/update/{id}")

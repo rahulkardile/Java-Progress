@@ -35,13 +35,22 @@ public class JournalEntryService  {
         userService.saveEntry(user);
     }
 
+    public void saveEntry(JournalEntry journalEntry){
+        JournalEntry saved = journalEntryRepo.save(journalEntry);
+    }
+
     public Optional<JournalEntry> getById(ObjectId id){
         return journalEntryRepo.findById(id);
     }
 
-    public boolean deleteById(ObjectId id){
+    public boolean deleteById(ObjectId id, String username){
         if(journalEntryRepo.existsById(id)){
+
+            UserEntity user = userService.findByUsername(username);
+            user.getJournalEntryList().removeIf(x -> x.equals(id));
+
             journalEntryRepo.deleteById(id);
+
             return true;
         }else {
             return false;

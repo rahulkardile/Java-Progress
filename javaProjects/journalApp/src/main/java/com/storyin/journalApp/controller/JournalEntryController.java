@@ -99,13 +99,13 @@ public class JournalEntryController {
             old.setContent(newEntry.getContent() != null && !newEntry.getContent().equals("") ? newEntry.getContent() : old.getContent());
         }
 
-//      journalEntryService.saveEntry(old);
+      journalEntryService.saveEntry(old);
         return new ResponseEntity<>(old , HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/id/{id}")
-    public ResponseEntity<?> findByIdAndDelete(@PathVariable ObjectId id) {
-        boolean deleted = journalEntryService.deleteById(id);
+    @DeleteMapping("/id/{username}/{id}")
+    public ResponseEntity<?> findByIdAndDelete(@PathVariable ObjectId id, @PathVariable String username) {
+        boolean deleted = journalEntryService.deleteById(id, username);
         ErrorHandler eh = new ErrorHandler("" , 202);
         if (deleted) {
             eh.setMessage("Entry Deleted!");

@@ -22,7 +22,7 @@ public class MainOne {
             char next = pairs.charAt(i+1);
             
             if(current == next){
-                System.out.println(next);
+                System.out.println(next + " " +  current);
             }
         }
 

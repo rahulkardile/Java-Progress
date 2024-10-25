@@ -28,7 +28,7 @@ public class SecurityConfig {
         return httpSecurity
                 .csrf(AbstractHttpConfigurer::disable)  // disabling CSRF
                 .authorizeHttpRequests(req -> req
-                        .requestMatchers("register", "login").permitAll() // Secured for authenticated users
+                        .requestMatchers( "register", "login").permitAll() // Secured for authenticated users
                         .anyRequest().authenticated()  // All other requests require authentication
                 )
                 .httpBasic(Customizer.withDefaults())  // Allow basic auth (for Postman testing)

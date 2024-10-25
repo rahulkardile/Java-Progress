@@ -14,7 +14,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/hello")
+    @GetMapping
     public String greet(){
         return "Hello Buddy from user . . .";
     }
@@ -26,9 +26,7 @@ public class UserController {
 
     @PostMapping("/login")
     public String login(@RequestBody Users user){
-        return "Success!";
+        return userService.verify(user) ? "Your now authenticated" : "Authentication Failed!";
     }
-
-
 
 }

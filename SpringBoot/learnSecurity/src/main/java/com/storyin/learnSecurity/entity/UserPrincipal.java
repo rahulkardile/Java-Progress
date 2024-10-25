@@ -42,12 +42,12 @@ public class UserPrincipal implements UserDetails {
     }
 
     @Override
-    public boolean isEnabled() {
+    public boolean isCredentialsNonExpired() {
         return true;
     }
 
     @Override
-    public boolean isCredentialsNonExpired() {
+    public boolean isEnabled() {
         return true;
     }
 }

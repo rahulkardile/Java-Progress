@@ -1,19 +1,20 @@
 public class ThreadMethods extends Thread {
 
-    public ThreadMethods(String name){
+    public ThreadMethods(String name) {
         super(name);
     }
 
     @Override
-    public void run(){
+    public void run() {
 
-        for(int i = 0; i <= 5; i++){
+        for (int i = 0; i <= 5; i++) {
             String a = "";
-            for(double j = 0; j <= 10000; j++){
+            for (double j = 0; j <= 10000; j++) {
                 a += "a";
             }
-            
-            System.out.println(Thread.currentThread().getName() + "\t" + "Priority : " + Thread.currentThread().getPriority() + "\t" + "Count : " + i);
+
+            System.out.println(Thread.currentThread().getName() + "\t" + "Priority : "
+                    + Thread.currentThread().getPriority() + "\t" + "Count : " + i);
         }
 
         try {
@@ -33,9 +34,9 @@ public class ThreadMethods extends Thread {
         m.setPriority(NORM_PRIORITY);
         h.setPriority(MAX_PRIORITY);
 
-        // These join will stop unti that thread complete its execution.    
+        // These join will stop unti that thread complete its execution.
         l.start();
-        // l.join();  // it will wait to complete it task.
+        // l.join(); // it will wait to complete it task.
         m.start();
         // m.join();
         h.start();
@@ -48,27 +49,54 @@ public class ThreadMethods extends Thread {
 
 class NewMethod extends Thread {
 
-    public NewMethod(String name){
+    public NewMethod(String name) {
         super(name);
     }
 
     @Override
-    public void run(){
+    public void run() {
         try {
-        Thread.sleep(3000);
+            Thread.sleep(3000);
+            System.out.println("Thread " + Thread.currentThread().getName() + " is running!");
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        System.out.println("Thread " + Thread.currentThread().getName() + " is running!");
-    
     }
 
     public static void main(String[] args) {
-        
+
         NewMethod t1 = new NewMethod("Thread Intrupt");
         t1.start();
         t1.interrupt();
+
+    }
+
+}
+
+// Yeild 
+// a way to give change to another threads
+class Yeild extends Thread {
+
+    @Override
+    public void run() {
+        try {
+        
+            for (int i = 0; i < 10; i++) {
+                System.out.println("executing " + Thread.currentThread().getName());
+                Thread.yield();    
+            }
+        
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void main(String[] args) {
+        Yeild t1 = new Yeild();
+        Yeild t2 = new Yeild();
+
+        t1.start();
+        t2.start();
 
     }
 

@@ -6,6 +6,7 @@ public class ThreadMethods extends Thread {
 
     @Override
     public void run(){
+
         for(int i = 0; i <= 5; i++){
             String a = "";
             for(double j = 0; j <= 10000; j++){
@@ -23,7 +24,7 @@ public class ThreadMethods extends Thread {
 
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         ThreadMethods l = new ThreadMethods("Thread Low Priority");
         ThreadMethods m = new ThreadMethods("Thread Medium Priority");
         ThreadMethods h = new ThreadMethods("Thread High Priority");
@@ -32,9 +33,43 @@ public class ThreadMethods extends Thread {
         m.setPriority(NORM_PRIORITY);
         h.setPriority(MAX_PRIORITY);
 
+        // These join will stop unti that thread complete its execution.    
         l.start();
+        // l.join();  // it will wait to complete it task.
         m.start();
+        // m.join();
         h.start();
+        // h.join();
 
     }
+}
+
+// Intrupt
+
+class NewMethod extends Thread {
+
+    public NewMethod(String name){
+        super(name);
+    }
+
+    @Override
+    public void run(){
+        try {
+        Thread.sleep(3000);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("Thread " + Thread.currentThread().getName() + " is running!");
+    
+    }
+
+    public static void main(String[] args) {
+        
+        NewMethod t1 = new NewMethod("Thread Intrupt");
+        t1.start();
+        t1.interrupt();
+
+    }
+
 }

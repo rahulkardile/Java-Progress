@@ -1,34 +1,34 @@
 
-// class World extends Thread {
-//     @Override
-//     public void run(){  // Running State
-//         for(;;){
-//          System.out.println(Thread.currentThread().getName());
-//         }
-//     }
-// }
+class World extends Thread {
+    @Override
+    public void run(){  // Running State
+        for(;;){
+         System.out.println(Thread.currentThread().getName());
+        }
+    }
+}
 
-// // two treads are working together
+// two treads are working together
 
-// public class Main {
-//     public static void main(String[] args) {
+public class Main {
+    public static void main(String[] args) {
         
-//         // Thread Life Cycle
-//         World world = new World();  // New State        
-//         world.start(); // Runnable State
+        // Thread Life Cycle
+        World world = new World();  // New State        
+        world.start(); // Runnable State
 
 
-//         //to create new thread with runnable
-//         // NewWorld newWorld = new NewWorld();
-//         // Thread t1 = new Thread(newWorld);
-//         // t1.start();
+        //to create new thread with runnable
+        // NewWorld newWorld = new NewWorld();
+        // Thread t1 = new Thread(newWorld);
+        // t1.start();
 
-//         for(;;){
-//             System.out.println(Thread.currentThread().getName());
-//         }
+        for(;;){
+            System.out.println(Thread.currentThread().getName());
+        }
 
 
 
-//     }
+    }
     
-// }
+}

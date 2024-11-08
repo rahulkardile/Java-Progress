@@ -101,3 +101,30 @@ class Yeild extends Thread {
     }
 
 }
+
+//Deamon Threads
+// This threads are also called as background threads. in this case execution of thread is stop when it main thead complete its execution.
+
+class DeamonThreads extends Thread {
+
+    @Override
+    public void run() {
+        try {
+        
+            for (; ;) {
+                System.out.println("Hello World!");
+            }
+        
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void main(String[] args) {
+        DeamonThreads t1 = new DeamonThreads();
+        t1.setDaemon(true);
+        t1.start();
+        System.out.println("Main Thread execution is Done.");
+    }
+
+}

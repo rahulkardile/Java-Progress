@@ -13,8 +13,12 @@ public class BankAccount {
         System.out.println(Thread.currentThread().getName() + "\t" + "Attempting to withdraw : " + amount);
 
         try {
-            lock.lock();
-            if (lock.tryLock(3, TimeUnit.SECONDS)) {
+
+            // this method will tell other methods to wait until the execution of the current task to finish.
+            // lock.lock();
+
+            // this method wait unit bellow time completes and still the task has't complete then it will exit or go into the else block.
+            if (lock.tryLock(2, TimeUnit.SECONDS)) {
 
                 if (balance >= amount) {
 
@@ -35,7 +39,7 @@ public class BankAccount {
                     System.out.println(Thread.currentThread().getName() + "Insufficient fund!");
                 }
 
-            }else{
+            } else {
                 System.out.println(Thread.currentThread().getName() + " Could not acquire the lock, will try later.");
             }
         } catch (Exception e) {

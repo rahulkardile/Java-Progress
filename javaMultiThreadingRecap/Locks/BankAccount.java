@@ -46,6 +46,13 @@ public class BankAccount {
             Thread.currentThread().interrupt();
         }
 
+        if(Thread.currentThread().isInterrupted()){
+        
+            System.out.println("Other thread is working . . .");
+            System.out.println("And that thread name is " + Thread.currentThread().getName());
+        
+        }
+
     }
 
 }

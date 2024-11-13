@@ -1,0 +1,37 @@
+@charset "UTF-8";
+
+body {
+	margin: 0;
+	padding: 0;
+}
+
+.header{
+	display: flex;
+	width: 100%;
+	background: gray;
+	justify-content: space-between;
+	padding: 2rem, 3rem;
+}
+
+.header nav {
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+	background-color: red;
+}
+
+.header nav a {
+	margin-right: 30px;
+}
+
+
+.container {
+	margin: auto;
+	align-content: center;
+	text-align: center;
+	width: 80%;
+}
+
+.services{
+	width: 200px;
+}

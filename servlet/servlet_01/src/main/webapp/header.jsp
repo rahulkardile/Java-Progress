@@ -7,7 +7,7 @@
 		<a href="<%= application.getContextPath() %>/">Home</a>
 		<a href="<%= application.getContextPath() %>/about.jsp">About</a>
 		<a href="<%= application.getContextPath() %>/services.jsp">Services</a>
-		<a href="/">Login</a>
+		<a href="<%= application.getContextPath() %>/login.jsp">Login</a>
 
 	</nav>
 </header>

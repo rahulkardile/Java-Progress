@@ -23,8 +23,8 @@ public class Hello {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @GetMapping("/csrf")
-    public CsrfToken getCsrf(HttpServletRequest req){
+    @GetMapping("/csrf-token")
+    public CsrfToken getCsrfToken(HttpServletRequest req){
         return (CsrfToken) req.getAttribute("_csrf");
     }
 

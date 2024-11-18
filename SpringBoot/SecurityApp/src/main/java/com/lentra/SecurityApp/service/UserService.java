@@ -14,37 +14,37 @@ public class UserService {
 
     @Autowired
     private UserRepo repo;
-
     @Autowired
     private AuthenticationManager manager;
+    @Autowired
+    private JWTService jwtService;
 
-    private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder( 12 );
+    private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
 
-    public boolean createNewUser(Users user){
+    public boolean createNewUser(Users user) {
 
-        if(repo.findByUsername(user.getUsername()) == null){
-            user.setPassword(encoder.encode(user.getPassword()));
+        if (repo.findByUsername(user.getUsername( )) == null) {
+            user.setPassword(encoder.encode(user.getPassword( )));
             repo.save(user);
             return true;
-        }else{
+        } else {
             return false;
         }
     }
 
-    public boolean loginUser(Users user){
+    public boolean loginUser(Users user) {
 
         Authentication authentication =
                 manager.authenticate(
                         new UsernamePasswordAuthenticationToken(
-                                user.getUsername(), user.getPassword()
+                                user.getUsername( ), user.getPassword( )
                         ));
 
-        if(authentication.isAuthenticated()){
+        if (authentication.isAuthenticated()){
+            System.out.println(jwtService.generateToken(user.getUsername( )));
             return true;
-        }else {
+        } else {
             return false;
         }
     }
-
-
 }

@@ -3,15 +3,16 @@ package com.lentra.SecurityApp.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration // telling spring that this is configuration file to spring.
@@ -28,7 +29,11 @@ public class SpringConfig {
         http.csrf(customizer -> customizer.disable( ));
 
         // Require authentication for all requests
-        http.authorizeHttpRequests(req -> req.anyRequest( ).authenticated( ));
+        http.authorizeHttpRequests(req -> req
+                .requestMatchers("register", "login")
+                .permitAll()
+                .anyRequest( )
+                .authenticated( ));
 
         // Configure form-based login with default settings
         // http.formLogin(Customizer.withDefaults( ));
@@ -36,11 +41,11 @@ public class SpringConfig {
         // Enable basic authentication for testing with tools like Postman
         http.httpBasic(Customizer.withDefaults( ));
 
-        // Set session management to stateless, meaning no server-side session will be created
+        // Set session management to stateless, meaning no server-side session will be created.
         http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
         // Build and return the security filter chain
-        return http.build( );
+        return http.build();
 
     };
 
@@ -51,6 +56,11 @@ public class SpringConfig {
         provider.setPasswordEncoder(new BCryptPasswordEncoder( 12 ));
         provider.setUserDetailsService(userDetailsService);
         return provider;
+    }
+
+    @Bean
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
+       return configuration.getAuthenticationManager();
     }
 
 //    @Bean

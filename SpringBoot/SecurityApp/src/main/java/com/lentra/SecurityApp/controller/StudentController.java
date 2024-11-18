@@ -1,6 +1,9 @@
 package com.lentra.SecurityApp.controller;
 
 import com.lentra.SecurityApp.entity.Student;
+import com.lentra.SecurityApp.entity.Users;
+import com.lentra.SecurityApp.service.StudentService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -16,9 +19,12 @@ public class StudentController {
             new Student("shubh sawai", 21, 80)
     ));
 
+    @Autowired
+    private StudentService service;
+
     @GetMapping
-    public List<Student> getStudent() {
-        return list;
+    public List<Users> getStudent() {
+        return service.getAllUsers();
     }
 
     @PostMapping

@@ -33,13 +33,11 @@ public class UserService {
     }
 
     public boolean loginUser(Users user) {
-
         Authentication authentication =
                 manager.authenticate(
                         new UsernamePasswordAuthenticationToken(
                                 user.getUsername( ), user.getPassword( )
                         ));
-
         if (authentication.isAuthenticated()){
             System.out.println(jwtService.generateToken(user.getUsername( )));
             return true;

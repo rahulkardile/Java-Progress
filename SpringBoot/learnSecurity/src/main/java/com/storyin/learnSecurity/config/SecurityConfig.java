@@ -15,6 +15,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration  // this annotation tells spring that this is a configuration file.
 @EnableWebSecurity // this annotation says that don't go with a default configuration go with this configuration.
@@ -22,6 +23,9 @@ public class SecurityConfig {
 
     @Autowired
     private UserDetailsService userDetailsService;
+
+    @Autowired
+    private JwtFilter jwtFilter;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
@@ -33,6 +37,7 @@ public class SecurityConfig {
                 )
                 .httpBasic(Customizer.withDefaults())  // Allow basic auth (for Postman testing)
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))  // Stateless sessions
+                .addFilter(jwtFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
 

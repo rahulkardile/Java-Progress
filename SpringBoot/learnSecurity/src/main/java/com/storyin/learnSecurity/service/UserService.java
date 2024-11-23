@@ -18,6 +18,9 @@ public class UserService {
     @Autowired
     private AuthenticationManager authManager;
 
+    @Autowired
+    private JWTService jwtService;
+
     private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(10);
 
     public Users save(Users user){
@@ -26,13 +29,13 @@ public class UserService {
         return user;
     };
 
-    public Boolean verify(Users user){
+    public String verify(Users user){
         Authentication authentication =
                 authManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword()));
 
         if(authentication.isAuthenticated()){
-            return true;
-        }else return  false;
+            return jwtService.generateToken(user.getUsername());
+        }else return  "Authentication Failed, Please check credencials!";
 
     }
 

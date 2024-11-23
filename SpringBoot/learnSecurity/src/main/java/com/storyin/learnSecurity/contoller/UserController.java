@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController("/auth")
+@RestController
 public class UserController {
 
     @Autowired
@@ -26,7 +26,7 @@ public class UserController {
 
     @PostMapping("/login")
     public String login(@RequestBody Users user){
-        return userService.verify(user) ? "Your now authenticated" : "Authentication Failed!";
+        return userService.verify(user);
     }
 
 }

@@ -1,11 +1,13 @@
-package com.rahulkardile.EcommerceWeb;
+package com.example.mvn_test;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class EcommerceWebApplication {
+public class MvnTestApplication {
+
 	public static void main(String[] args) {
-		SpringApplication.run(EcommerceWebApplication.class, args);
+		SpringApplication.run(MvnTestApplication.class, args);
 	}
+
 }

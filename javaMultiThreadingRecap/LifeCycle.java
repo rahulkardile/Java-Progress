@@ -1,4 +1,3 @@
-
 // In This will explores all the the lifecycle of a thread
 
 public class LifeCycle extends Thread {

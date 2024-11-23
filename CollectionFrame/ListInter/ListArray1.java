@@ -7,7 +7,8 @@ import java.util.List;
 
 public class ListArray1 {
     public static void main(String[] args) {
-        List<String> fruits = new ArrayList<String>();
+        
+        List<Integer> fruits = new ArrayList<>();
         fruits.add("Apple");
         fruits.add("Orange");
         fruits.add("Banana");

@@ -1,11 +1,9 @@
 package Sorting;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 public class Sorting {
 
-    // bubble sorting algo done
+    // 1. bubble sorting algo done
+    // time complexity = O(n^2)
     public static int[] bubble(int[] arr) {
 
         for (int i = 0; i < arr.length - 1; i++) {
@@ -27,6 +25,24 @@ public class Sorting {
         return arr;
     }
 
+    // 2. selection sort
+    public static int[] selection(int[] arr) {
+        for (int i = 0; i < arr.length - 1; i++) {
+            int smallestIndex = i;
+
+            for (int j = i + 1; j < arr.length; j++) {
+                if (arr[smallestIndex] < arr[j]) {
+                    smallestIndex = j;
+                }
+            }
+            int temp = arr[smallestIndex];
+            arr[smallestIndex] = arr[i];
+            arr[i] = temp;
+        }
+
+        return arr;
+    }
+
     public static void printArr(int[] arr) {
         for (int i = 0; i < arr.length; i++) {
             System.out.print(arr[i]);
@@ -37,15 +53,6 @@ public class Sorting {
     public static void main(String[] args) {
 
         int arr[] = { 7, 8, 3, 1, 2 };
-
-        ArrayList<Integer> arr3 = new ArrayList<>(Arrays.asList(7, 8, 3, 1, 2));
-
-        arr3.sort(null);
-        System.out.println("list : " + arr3);
-
-        System.out.println("length : " + arr.length);
-
-        int bubble[] = bubble(arr);
-
+        printArr(selection(arr));
     }
 }
